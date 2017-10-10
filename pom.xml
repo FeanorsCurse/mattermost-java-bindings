@@ -6,7 +6,24 @@
 
 	<groupId>com.dsuepke.mattermost</groupId>
 	<artifactId>mattermost-java-bindings</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+
+	<name>Mattermost Java Bindings</name>
+	<description>A project that aims at providing java bindings to the mattermost REST API</description>
+	<url>https://github.com/FeanorsCurse/mattermost-java-bindings</url>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.en.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/FeanorsCurse/mattermost-java-bindings</url>
+	</scm>
 
 	<dependencies>
 		<dependency>
