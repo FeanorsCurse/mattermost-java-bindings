@@ -31,12 +31,24 @@ public class MattermostWebHook {
 	}
 
 
-	public void sendMessage(@Nullable String text, @Nullable String userName) throws IOException {
+	/**
+	 * Sends a markdown message to mattermost.
+	 *
+	 * @param text     The markdown text to send to the channel
+	 * @param userName If null, will use mattermost's default name "webhook"
+	 * @return Null if ok, otherwise the error (usual as json string)
+	 */
+	@Nullable
+	public String sendMessage(@Nullable String text, @Nullable String userName) throws IOException {
 		JSONObject json = new JSONObject();
 		json.put("text", text);
 		json.put("username", userName);
 
-		post(json.toString());
+		String response = post(json.toString());
+		if (response.equals("ok")) {
+			return null;
+		}
+		return response;
 	}
 
 
