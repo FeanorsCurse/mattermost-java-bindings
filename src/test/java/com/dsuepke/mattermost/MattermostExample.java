@@ -19,9 +19,6 @@ public class MattermostExample {
 
 		// This should work if URL_BASE and HOOK_TEST_CHANNEL are properly set up
 		printOnError(hook.sendMessage("Hello, World!", BOT1));
-
-		// This will give an error due to missing text
-		printOnError(hook.sendMessage(null, BOT1));
 	}
 
 

@@ -39,7 +39,7 @@ public class MattermostWebHook {
 	 * @return Null if ok, otherwise the error (usual as json string)
 	 */
 	@Nullable
-	public String sendMessage(@Nullable String text, @Nullable String userName) throws IOException {
+	public String sendMessage(@NonNull String text, @Nullable String userName) throws IOException {
 		JSONObject json = new JSONObject();
 		json.put("text", text);
 		json.put("username", userName);
