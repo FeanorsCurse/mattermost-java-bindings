@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.annotation.Nullable;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import lombok.NonNull;
@@ -16,7 +17,7 @@ import okhttp3.ResponseBody;
 /**
  * @author dsuepke
  */
-@SuppressWarnings("WeakerAccess") // Only relevant in this small example
+@SuppressWarnings("WeakerAccess") // Only relevant in this small example with just one package
 public class MattermostWebHook {
 
 	private static final MediaType JSON = MediaType.parse("application/json; encoding=UTF-8");
@@ -48,7 +49,40 @@ public class MattermostWebHook {
 		if (response.equals("ok")) {
 			return null;
 		}
-		return response;
+		return response + " \nJSon string sent: " + json.toString();
+	}
+
+
+	@Nullable
+	public String sendMessageAttachment(@NonNull MattermostMessageAttachment attachment, @Nullable String userName) throws IOException {
+		JSONObject json = new JSONObject();
+		JSONArray jsonAttachments = new JSONArray();
+
+		JSONObject jsonAttachment = new JSONObject();
+		jsonAttachment.put("text", attachment.getText());
+		jsonAttachment.put("username", userName);
+		jsonAttachment.put("fallback", attachment.getFallback());
+		jsonAttachment.putOpt("title", attachment.getTitle());
+		jsonAttachment.putOpt("thumb_url", attachment.getThumbUrl());
+		jsonAttachment.putOpt("color", attachment.getColor());
+
+		JSONArray fields = new JSONArray();
+		for (MattermostMessageAttachment.AttachmentField field : attachment.getFields()) {
+			JSONObject jsonField = new JSONObject();
+			jsonField.put("short", field.isShortField());
+			jsonField.put("title", field.getTitle());
+			jsonField.put("value", field.getValue());
+			fields.put(jsonField);
+		}
+		jsonAttachment.put("fields", fields);
+		jsonAttachments.put(jsonAttachment);
+		json.put("attachments", jsonAttachments);
+
+		String response = post(json.toString());
+		if (response.equals("ok")) {
+			return null;
+		}
+		return response + " \nJSon string sent: " + json.toString();
 	}
 
 
@@ -68,4 +102,5 @@ public class MattermostWebHook {
 
 		return response.string();
 	}
+
 }
