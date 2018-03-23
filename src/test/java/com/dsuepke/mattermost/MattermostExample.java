@@ -12,7 +12,6 @@ public class MattermostExample {
 
 	private static final String BOT1 = "MyBot";
 
-
 	public static void main(String[] args) throws IOException {
 		MattermostWebHook hook = new MattermostWebHook(URL_BASE + HOOK_TEST_CHANNEL);
 		hook.sendMessage("Hello World!", BOT1);

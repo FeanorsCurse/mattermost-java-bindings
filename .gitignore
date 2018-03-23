@@ -1,1 +1,4 @@
 .idea
+
+# Contains the Webhook and URL I use for testing and should thus not be pushed
+MattermostExampleWeSustain.java
