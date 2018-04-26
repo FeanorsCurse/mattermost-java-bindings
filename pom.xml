@@ -6,7 +6,7 @@
 
 	<groupId>com.dsuepke.mattermost</groupId>
 	<artifactId>mattermost-java-bindings</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<packaging>jar</packaging>
 
 	<name>Mattermost Java Bindings</name>

@@ -56,11 +56,12 @@ public class MattermostWebHook {
 	@Nullable
 	public String sendMessageAttachment(@NonNull MattermostMessageAttachment attachment, @Nullable String userName) throws IOException {
 		JSONObject json = new JSONObject();
+		json.put("username", userName);
+
 		JSONArray jsonAttachments = new JSONArray();
 
 		JSONObject jsonAttachment = new JSONObject();
 		jsonAttachment.put("text", attachment.getText());
-		jsonAttachment.put("username", userName);
 		jsonAttachment.put("fallback", attachment.getFallback());
 		jsonAttachment.putOpt("title", attachment.getTitle());
 		jsonAttachment.putOpt("thumb_url", attachment.getThumbUrl());
